@@ -5,3 +5,9 @@ try:
 except psycopg2.Error as e:
     print("Error: Could not make connection to the Postgres database")
     print(e)
+
+try:
+    cur = conn.cursor()
+except psycopg2.Error as e:
+    print("Error: Could not get curser to the Database")
+    print(e)
