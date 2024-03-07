@@ -16,7 +16,23 @@ conn.set_session(autocommit=True)
 
 try:
     cur.execute("CREATE TABLE IF NOT EXISTS students (student_id int, name varchar,\
-                age int, gender varchar, marks int);")
+                age int, gender varchar, subject varchar, marks int);")
 except psycopg2.Error as e:
     print("Error: Issue creating table")
     print (e)
+
+try:
+    cur.execute("INSERT INTO students (student_id, name, age, gender, subject, marks)\
+                VALUES (%s, %s, %s, %s, %s, %s)",
+                (1, "Raj", 23, "Male", "Python", 85))
+except psycopg2.Error as e:
+    print("Error: Inserting Rows")
+    print(e)
+
+try:
+    cur.execute("INSERT INTO students (student_id, name, age, gender, subject, marks)\
+                VALUES (%s, %s, %s, %s, %s, %s)",
+                (2, "Priya", 22, "Female", "Python", 86))
+except psycopg2.Error as e:
+    print("Error: Inserting Rows")
+    print(e)
