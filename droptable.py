@@ -27,3 +27,4 @@ try:
     conn.close()
 except psycopg2.Error as e:
     print(e)
+

@@ -14,6 +14,8 @@ except psycopg2.Error as e:
 
 conn.set_session(autocommit=True)
 
+cur.execute("DROP TABLE IF EXISTS students")
+
 try:
     cur.execute("CREATE TABLE IF NOT EXISTS students (student_id int, name varchar,\
                 age int, gender varchar, subject varchar, marks int);")
@@ -36,3 +38,17 @@ try:
 except psycopg2.Error as e:
     print("Error: Inserting Rows")
     print(e)
+
+try:
+    cur.execute("SELECT * from students;")
+except psycopg2.Error as e:
+    print("Error: select *")
+    print(e)
+
+row = cur.fetchone()
+while row:
+    print(row)
+    row = cur.fetchone
+
+cur.close()
+conn.close()
